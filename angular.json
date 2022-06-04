@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "taquilla-virtual-web:build:production",
+            "firebaseProject": "taquilla-virtual",
+            "firebaseHostingSite": "taquilla-virtual"
+          }
         }
       }
     }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "taquilla-virtual": {
+      "hosting": {
+        "taquilla-virtual-web": [
+          "taquilla-virtual"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "taquilla-virtual"
+  }
+}
