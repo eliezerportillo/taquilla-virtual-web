@@ -1,0 +1,26 @@
+<div class="content" fxLayout="column" fxLayoutAlign="space-between stretch">
+    <form fxFlex="50" [formGroup]="form" (ngSubmit)="onLogin()" fxLayout="column" fxLayoutAlign="center center">
+        <mat-toolbar fxLayoutAlign="center center" color="primary">
+            <span>Invitados App</span>
+        </mat-toolbar>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <input matInput formControlName="usuario">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="contrasenia" type="password">
+        </mat-form-field>
+
+        <div fxLayoutAlign="center center">
+            <button mat-button>Entrar</button>
+        </div>
+    </form>
+
+    <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="16px">
+        <button mat-raised-button color="warn" (click)="onLoginConGoogle()">Entrar con Google</button>
+        <button mat-raised-button color="accent" (click)="onLoginConFacebook()">Entrar con Facebook</button>
+    </div>
+</div>
