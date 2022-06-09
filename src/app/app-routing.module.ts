@@ -10,6 +10,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     canActivate: [OnlyLoggedInUsersGuard],
+  },
+  {
+    path: 'events',
+    loadChildren: () => import('./events/events.module').then(m => m.EventsModule)
   }
 ];
 

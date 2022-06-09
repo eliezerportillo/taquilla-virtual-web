@@ -7,16 +7,17 @@ interface Person {
     lastName: string;
 }
 
-export interface Account extends IAggregateRoot, Person {    
+export interface Account extends IAggregateRoot, Person {
     company: string;
     country: string;
-    phoneNumber: string;    
+    phoneNumber: string;
     pricingPlan: string;
 }
 
 export interface Event extends IAggregateRoot {
     name: string;
     description: string;
+    date: Date,
     place: string;
     address: string;
     capacity: number;
@@ -35,7 +36,7 @@ export interface Order extends IAggregateRoot {
     attendees: Attendee[]
 }
 
-interface Attendee extends Person {    
+interface Attendee extends Person {
     photoUrl: string;
 }
 
@@ -48,7 +49,7 @@ interface OrderItem {
 interface PromoCode {
     name: string;
     limitType: LimitType;
-    limitedNumber: string;
+    limitedNumber: number;
     discountType: DiscountType;
     validity: Validity;
 }
@@ -57,7 +58,7 @@ interface Ticket {
     name: string;
     ticketType: TicketType;
     availableQuantity: number;
-    price: string;
+    price: number;
     startSales: string;
     description: string;
     visibility: TicketVisibility;
@@ -67,31 +68,31 @@ interface Ticket {
     deliveryMethod: TicketDeliveryMethod;
 }
 
-enum TicketType {
+export enum TicketType {
     Payment,
     Free,
     Donation
 }
 
-enum TicketVisibility {
+export enum TicketVisibility {
     Visible,
     hidden,
     HiddenWhenNotAvailable,
     CustomSchedule
 }
 
-enum TicketChannelOption {
+export enum TicketChannelOption {
     Everywhere,
     Online,
     Place
 }
 
-enum TicketDeliveryMethod {
+export enum TicketDeliveryMethod {
     ETicket,
     Pickup
 }
 
-enum EventType {
+export enum EventType {
 
     Conferencia = 'Conferencia',
     Seminarioocharla = 'Seminario o charla',
@@ -119,7 +120,7 @@ enum EventType {
 
 }
 
-enum EventCategory {
+export enum EventCategory {
 
     Musica = 'Música',
     Negociosyserviciosprofesionales = 'Negocios y servicios profesionales',
@@ -154,12 +155,12 @@ interface Validity {
     endDate: Date;
 }
 
-enum DiscountType {
+export enum DiscountType {
     Amount,
     Percent
 }
 
-enum LimitType {
+export enum LimitType {
     Unlimited,
     LimitedTo
 }
