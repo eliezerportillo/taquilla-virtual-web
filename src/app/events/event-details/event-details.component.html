@@ -1,37 +1,41 @@
+<mat-toolbar color="accent">
+    <mat-toolbar-row>
+        <h2 style="margin: auto;">{{event.eventMessage}}</h2>
+    </mat-toolbar-row>
+
+</mat-toolbar>
 <img [src]="event.coverImage" alt="event image" style="width: 100%;">
 
 <mat-toolbar>
 
     <h1>{{event.name}}</h1>
     <span class="spacer"></span>
-    <button mat-raised-button color="primary">Comprar boletos</button>
 </mat-toolbar>
 
 <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Información">
         <mat-list role="list">
             <mat-list-item role="listitem">
-
-                <strong>Fecha: &nbsp;</strong>
-                {{event.date.toLocaleDateString()}}
+                <mat-icon mat-list-icon>calendar_month</mat-icon>
+                <div mat-line><strong>Fecha</strong></div>
+                <div mat-line> {{event.date.toLocaleDateString()}} </div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <mat-icon mat-list-icon>schedule</mat-icon>
+                <div mat-line><strong>Hora &nbsp;</strong></div>
+                <div mat-line>{{event.date.toLocaleTimeString()}}</div>
 
             </mat-list-item>
             <mat-list-item role="listitem">
-
-                <strong>Hora: &nbsp;</strong>
-                {{event.date.toLocaleTimeString()}}
-
-            </mat-list-item>
-            <mat-list-item role="listitem">
-
-                <strong>Lugar: &nbsp;</strong>
-                {{event.place}}
+                <mat-icon mat-list-icon>pin_drop</mat-icon>
+                <div mat-line><strong>Lugar &nbsp;</strong></div>
+                <div mat-line>{{event.place}}</div>
 
             </mat-list-item>
             <mat-list-item role="listitem">
-
-                <strong>Dirección: &nbsp;</strong>
-                {{event.address}}
+                <mat-icon mat-list-icon>assistant_direction</mat-icon>
+                <div mat-line><strong>Dirección &nbsp;</strong></div>
+                <div mat-line>{{event.address}}</div>
 
             </mat-list-item>
         </mat-list>
@@ -39,4 +43,18 @@
     <mat-tab label="Sobre el evento">
         <mat-card>{{event.description}}</mat-card>
     </mat-tab>
+    <mat-tab label="Precios">
+        <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let ticket of event.tickets">
+                <mat-icon mat-list-icon>local_activity</mat-icon>
+                <div mat-line> {{ticket.price | currency}} </div>
+                <div mat-line>{{ticket.name}}</div>
+            </mat-list-item>
+        </mat-list>
+    </mat-tab>
 </mat-tab-group>
+<mat-toolbar>
+    <mat-toolbar-row>
+        <button mat-raised-button color="primary" style="margin: auto;">Comprar boletos</button>
+    </mat-toolbar-row>
+</mat-toolbar>

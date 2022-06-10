@@ -10,6 +10,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {  MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { WidgetModule } from '../widget/widget.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -22,6 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     EventsRoutingModule,
+    WidgetModule,
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
@@ -29,7 +32,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatGridListModule,
     MatListModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class EventsModule { }

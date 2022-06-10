@@ -23,6 +23,7 @@ export interface Event extends IAggregateRoot {
     capacity: number;
     eventType: EventType;
     eventCategory: EventCategory;
+    eventMessage: string;
     coverImage: string;
     tickets: Ticket[];
     promoCodes: PromoCode[];
@@ -54,7 +55,7 @@ interface PromoCode {
     validity: Validity;
 }
 
-interface Ticket {
+export interface Ticket {
     name: string;
     ticketType: TicketType;
     availableQuantity: number;
