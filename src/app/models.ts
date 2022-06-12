@@ -26,8 +26,10 @@ export interface Event extends IAggregateRoot {
     eventMessage: string;
     coverImage: string;
     tickets: Ticket[];
+    ticketLimitPerOrder?: number,
     promoCodes: PromoCode[];
     state: string;
+
 }
 
 export interface Order extends IAggregateRoot {
@@ -41,7 +43,7 @@ interface Attendee extends Person {
     photoUrl: string;
 }
 
-interface OrderItem {
+export interface OrderItem {
     quantity: number;
     ticketRef: string;
     ticket: Ticket;

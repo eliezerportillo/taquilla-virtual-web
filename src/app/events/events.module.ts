@@ -25,15 +25,13 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     EventsRoutingModule,
     WidgetModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatTabsModule,
-    MatGridListModule,
-    MatListModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule
+    
+    
+    
+    
+    
+    
+    
   ]
 })
 export class EventsModule { }

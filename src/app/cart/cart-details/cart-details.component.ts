@@ -1,17 +1,16 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { DiscountType, Event, EventCategory, EventType, LimitType, TicketChannelOption, TicketDeliveryMethod, TicketType, TicketVisibility } from 'src/app/models';
+import { Component, OnInit } from '@angular/core';
+import { DiscountType, Event, EventCategory, EventType, LimitType, Order, OrderItem, TicketChannelOption, TicketDeliveryMethod, TicketType, TicketVisibility } from 'src/app/models';
 
 @Component({
-  selector: 'app-event-details',
-  templateUrl: './event-details.component.html',
-  styleUrls: ['./event-details.component.scss']
+  selector: 'app-cart-details',
+  templateUrl: './cart-details.component.html',
+  styleUrls: ['./cart-details.component.scss']
 })
-export class EventDetailsComponent implements OnInit {
+export class CartDetailsComponent implements OnInit {
 
+  order: Order;
   event: Event;
-  constructor(
-    @Inject(LOCALE_ID) public locale: string
-  ) {
+  constructor() {
     this.event = {
       id: '1',
       address: 'Fray T de motolini 696, Guadalajara',
@@ -64,8 +63,44 @@ export class EventDetailsComponent implements OnInit {
           ticketType: TicketType.Payment,
           visibility: TicketVisibility.Visible
         }],
-        ticketLimitPerOrder: 10
+      ticketLimitPerOrder: 10
     }
+
+    this.order = {
+      event: this.event,
+      eventRef: '',
+      attendees: [],
+      id: '1',
+      tickets: this.event.tickets.map(x => {
+        return {
+          ticket: x,
+          ticketRef: '1',
+          quantity: 0
+        }
+      })
+    }
+  }
+
+  get hasLimit(): boolean {
+    return this.event.ticketLimitPerOrder ? true : false;
+  }
+
+  reduce(ticket: OrderItem) {
+    ticket.quantity--;
+  }
+
+  increment(ticket: OrderItem) {
+    ticket.quantity++;
+  }
+
+  canAdd(): boolean {
+
+    if (this.event.ticketLimitPerOrder) {
+      return true;
+    }
+
+    const addedItems = this.order.tickets.map(x => x.quantity).reduce((acc, cur) => acc + cur, 0)
+    return addedItems == this.event.ticketLimitPerOrder;
   }
 
   ngOnInit(): void {

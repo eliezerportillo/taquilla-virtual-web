@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,6 +30,8 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { LocaleService } from './core/locale.service';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
@@ -61,9 +63,21 @@ import { LoginComponent } from './login/login.component';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CoreModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: DEFAULT_CURRENCY_CODE,
+      deps: [LocaleService],
+      useFactory: (localeService: LocaleService) => localeService.currencyCode
+    },
+    {
+      provide: LOCALE_ID,
+      deps: [LocaleService],
+      useFactory: (localeService: LocaleService) => localeService.locale
+    }],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

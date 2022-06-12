@@ -1,0 +1,30 @@
+<mat-toolbar>Selecciona tus boletos</mat-toolbar>
+
+<mat-list role="list">
+    <mat-list-item role="listitem">
+        <img [src]="event.coverImage" alt="" mat-list-avatar>
+        <div mat-line> <strong>{{event.name}}</strong> </div>
+        <div mat-line> <strong>Fecha:</strong> {{event.date | eventDate}} </div>
+        <div mat-line> <strong>Horario:</strong> {{event.date | eventTime}} </div>
+    </mat-list-item>
+    <mat-list-item role="listitem" *ngIf="hasLimit">
+        <div mat-line> Solo se permiten comprar hasta <strong>{{event.ticketLimitPerOrder}}</strong> boletos por compra.</div>
+    </mat-list-item>
+    <mat-list-item role="listitem" *ngFor="let ticket of order.tickets">
+        <mat-icon mat-list-icon>local_activity</mat-icon>
+        <div mat-line> {{ticket.ticket.price | currency}} </div>
+        <div mat-line>{{ticket.ticket.name}}</div>
+        <div>
+            <button mat-icon-button color="primary" (click)="reduce(ticket)" [disabled]="ticket.quantity == 0">
+                <mat-icon>remove</mat-icon>
+            </button>
+            {{ticket.quantity}}
+            <button mat-icon-button color="primary" (click)="increment(ticket)"
+                [disabled]="canAdd()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </mat-list-item>
+
+    
+</mat-list>
