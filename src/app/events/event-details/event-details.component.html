@@ -60,6 +60,6 @@
 </mat-tab-group>
 <mat-toolbar>
     <mat-toolbar-row>
-        <button mat-raised-button color="primary" style="margin: auto;">Comprar boletos</button>
+        <a [routerLink]="'/cart/' + event.id" mat-raised-button color="primary" style="margin: auto;">Comprar boletos</a>
     </mat-toolbar-row>
 </mat-toolbar>
