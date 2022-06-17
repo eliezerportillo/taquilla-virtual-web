@@ -1,0 +1,4 @@
+<mat-toolbar>Información de asistente y pago</mat-toolbar>
+<div *ngIf="loaded">
+    <app-ticket-image-picker *ngFor="let attendee of order.attendees" (onLoadEnd)="attendee.photoFile = $event"></app-ticket-image-picker>
+</div>

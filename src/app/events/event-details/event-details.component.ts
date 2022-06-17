@@ -1,5 +1,5 @@
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { DiscountType, Event, EventCategory, EventType, LimitType, TicketChannelOption, TicketDeliveryMethod, TicketType, TicketVisibility } from 'src/app/models';
+import { DiscountType, Event, EventCategory, EventType, LimitType, TicketChannelOption, TicketDeliveryMethod, TicketType, TicketVisibility } from 'src/app/models/models';
 
 @Component({
   selector: 'app-event-details',

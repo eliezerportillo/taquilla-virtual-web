@@ -10,7 +10,11 @@ const routes: Routes = [
         path: '',
         component: HomeComponent
     },
-    { path: ':id', component: EventDetailsComponent }
+    { path: ':id', component: EventDetailsComponent },
+    {
+        path: ':id/tickets',
+        loadChildren: () => import('../tickets/tickets.module').then(m => m.TicketsModule)
+    }
 ];
 
 @NgModule({

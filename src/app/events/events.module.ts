@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { HomeComponent } from './home/home.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { EventDetailsComponent } from './event-details/event-details.component';
@@ -22,7 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     EventDetailsComponent
   ],
   imports: [
-    CommonModule,
+    
     EventsRoutingModule,
     WidgetModule,
     

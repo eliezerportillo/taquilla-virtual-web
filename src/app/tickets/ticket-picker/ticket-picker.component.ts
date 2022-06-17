@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { DiscountType, Event, EventCategory, EventType, LimitType, Order, OrderItem, TicketChannelOption, TicketDeliveryMethod, TicketType, TicketVisibility } from 'src/app/models';
+import { Router } from '@angular/router';
+import { SessionService } from 'src/app/core/session.service';
+import { IOrder, Event, DiscountType, EventCategory, EventType, LimitType, OrderItem, TicketChannelOption, TicketDeliveryMethod, TicketType, TicketVisibility } from 'src/app/models/models';
+
+import { Order, } from '../models/order';
 
 @Component({
-  selector: 'app-cart-details',
-  templateUrl: './cart-details.component.html',
-  styleUrls: ['./cart-details.component.scss']
+  selector: 'app-ticket-picker',
+  templateUrl: './ticket-picker.component.html',
+  styleUrls: ['./ticket-picker.component.scss']
 })
-export class CartDetailsComponent implements OnInit {
+export class TicketPickerComponent implements OnInit {
 
   order: Order;
   event: Event;
-  constructor() {
+  constructor(private router: Router, private sessionService: SessionService) {
     this.event = {
       id: '1',
       address: 'Fray T de motolini 696, Guadalajara',
@@ -66,7 +70,7 @@ export class CartDetailsComponent implements OnInit {
       ticketLimitPerOrder: 10
     }
 
-    this.order = {
+    const order: IOrder = {
       event: this.event,
       eventRef: '',
       attendees: [],
@@ -79,6 +83,8 @@ export class CartDetailsComponent implements OnInit {
         }
       })
     }
+
+    this.order = new Order(order);
   }
 
   get hasLimit(): boolean {
@@ -95,15 +101,24 @@ export class CartDetailsComponent implements OnInit {
 
   canAdd(): boolean {
 
-    if (this.event.ticketLimitPerOrder) {
+    const limit = Number(this.order.event.ticketLimitPerOrder);
+    if (limit > 0) {
+      const addedItems = this.order.tickets.map(x => x.quantity).reduce((acc, cur) => acc + cur, 0)
+      return addedItems < limit;
+    } else {
       return true;
     }
+  }
 
-    const addedItems = this.order.tickets.map(x => x.quantity).reduce((acc, cur) => acc + cur, 0)
-    return addedItems == this.event.ticketLimitPerOrder;
+  goNext() {
+    this.sessionService.startSession(this.order);
+    this.router.navigateByUrl(`/events/${this.event.id}/tickets/payment`);
   }
 
   ngOnInit(): void {
+    if(this.sessionService.hasSession()){
+      this.order = new Order(this.sessionService.getSession());
+    }
   }
 
 }

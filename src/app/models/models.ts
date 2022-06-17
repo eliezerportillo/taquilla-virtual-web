@@ -32,14 +32,14 @@ export interface Event extends IAggregateRoot {
 
 }
 
-export interface Order extends IAggregateRoot {
+export interface IOrder extends IAggregateRoot {
     tickets: OrderItem[]
     event: Event;
     eventRef: string;
-    attendees: Attendee[]
+    attendees: IAttendee[]
 }
 
-interface Attendee extends Person {
+export interface IAttendee extends Person {
     photoUrl: string;
 }
 

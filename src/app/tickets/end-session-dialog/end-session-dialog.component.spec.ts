@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CartComponent } from './cart.component';
+import { EndSessionDialogComponent } from './end-session-dialog.component';
 
-describe('CartComponent', () => {
-  let component: CartComponent;
-  let fixture: ComponentFixture<CartComponent>;
+describe('EndSessionDialogComponent', () => {
+  let component: EndSessionDialogComponent;
+  let fixture: ComponentFixture<EndSessionDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CartComponent ]
+      declarations: [ EndSessionDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CartComponent);
+    fixture = TestBed.createComponent(EndSessionDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

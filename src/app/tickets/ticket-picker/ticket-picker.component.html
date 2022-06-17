@@ -1,4 +1,8 @@
-<mat-toolbar>Selecciona tus boletos</mat-toolbar>
+<mat-toolbar>
+    <span>Tus boletos</span>
+    <span class="spacer"></span>
+    <strong>{{order.total | currency}}</strong>
+</mat-toolbar>
 
 <mat-list role="list">
     <mat-list-item role="listitem">
@@ -8,23 +12,26 @@
         <div mat-line> <strong>Horario:</strong> {{event.date | eventTime}} </div>
     </mat-list-item>
     <mat-list-item role="listitem" *ngIf="hasLimit">
-        <div mat-line> Solo se permiten comprar hasta <strong>{{event.ticketLimitPerOrder}}</strong> boletos por compra.</div>
+        <div mat-line> Solo se permiten comprar hasta <strong>{{event.ticketLimitPerOrder}}</strong> boletos por compra.
+        </div>
     </mat-list-item>
     <mat-list-item role="listitem" *ngFor="let ticket of order.tickets">
         <mat-icon mat-list-icon>local_activity</mat-icon>
         <div mat-line> {{ticket.ticket.price | currency}} </div>
         <div mat-line>{{ticket.ticket.name}}</div>
-        <div>
-            <button mat-icon-button color="primary" (click)="reduce(ticket)" [disabled]="ticket.quantity == 0">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <button mat-icon-button color="accent" (click)="reduce(ticket)" [disabled]="ticket.quantity == 0">
                 <mat-icon>remove</mat-icon>
             </button>
-            {{ticket.quantity}}
-            <button mat-icon-button color="primary" (click)="increment(ticket)"
-                [disabled]="canAdd()">
+            <div class="quantity">{{ticket.quantity}}</div>
+            <button mat-icon-button color="accent" (click)="increment(ticket)" [disabled]="!canAdd()">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
     </mat-list-item>
-
-    
 </mat-list>
+
+<mat-toolbar>
+    <span class="spacer"></span>
+    <button mat-raised-button color="primary" [disabled]="order.total <= 0" (click)="goNext()">Continuar a pagos</button>
+</mat-toolbar>
