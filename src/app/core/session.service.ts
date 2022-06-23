@@ -8,7 +8,7 @@ import { IOrder } from '../models/models';
   providedIn: 'root'
 })
 export class SessionService {
-  
+
   // some fields to store our state so we can display it in the UI
   idleState = "NOT_STARTED";
   countdown?: number;
@@ -18,7 +18,7 @@ export class SessionService {
     private router: Router,
     public idle: Idle,
     // private keepalive: Keepalive
-    ) {
+  ) {
     this.countdown = undefined;
     this.lastPing = undefined;
     this.initIdle()
@@ -30,7 +30,7 @@ export class SessionService {
 
   startSession(order: IOrder) {
     sessionStorage.setItem('order', JSON.stringify(order));
-    this.reset();
+    // this.reset();
   }
 
   removeSession() {
@@ -48,7 +48,7 @@ export class SessionService {
   private initIdle() {
     // set idle parameters
     this.idle.setIdle(60); // how long can they be inactive before considered idle, in seconds
-    this.idle.setTimeout(120); // how long can they be idle before considered timed out, in seconds
+    this.idle.setTimeout(60 * 5); // how long can they be idle before considered timed out, in seconds
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES); // provide sources that will "interrupt" aka provide events indicating the user is active
 
     // do something when the user becomes idle

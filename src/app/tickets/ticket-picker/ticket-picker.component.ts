@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from 'src/app/core/session.service';
-import { IOrder, Event, DiscountType, EventCategory, EventType, LimitType, OrderItem, TicketChannelOption, TicketDeliveryMethod, TicketType, TicketVisibility } from 'src/app/models/models';
+import { IOrder, Event, DiscountType, EventCategory, EventType, LimitType, IOrderTicket, TicketChannelOption, TicketDeliveryMethod, TicketType, TicketVisibility } from 'src/app/models/models';
 
 import { Order, } from '../models/order';
 
@@ -72,14 +72,19 @@ export class TicketPickerComponent implements OnInit {
 
     const order: IOrder = {
       event: this.event,
+      customer: {
+        firstName: '',
+        lastName: '',
+        email: ''
+      },
       eventRef: '',
-      attendees: [],
       id: '1',
       tickets: this.event.tickets.map(x => {
         return {
           ticket: x,
           ticketRef: '1',
-          quantity: 0
+          quantity: 0,
+           attendees: []
         }
       })
     }
@@ -91,11 +96,11 @@ export class TicketPickerComponent implements OnInit {
     return this.event.ticketLimitPerOrder ? true : false;
   }
 
-  reduce(ticket: OrderItem) {
+  reduce(ticket: IOrderTicket) {
     ticket.quantity--;
   }
 
-  increment(ticket: OrderItem) {
+  increment(ticket: IOrderTicket) {
     ticket.quantity++;
   }
 
@@ -112,7 +117,7 @@ export class TicketPickerComponent implements OnInit {
 
   goNext() {
     this.sessionService.startSession(this.order);
-    this.router.navigateByUrl(`/events/${this.event.id}/tickets/payment`);
+    this.router.navigateByUrl(`/events/${this.event.id}/tickets/info`);
   }
 
   ngOnInit(): void {

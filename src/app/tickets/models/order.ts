@@ -1,32 +1,32 @@
-import { IOrder, OrderItem, IAttendee, Event } from "src/app/models/models";
+import { IOrder, IOrderTicket, IAttendee, Event, ICustomer } from "src/app/models/models";
 
 
 export class Order implements IOrder {
-    tickets: OrderItem[];
+    tickets: IOrderTicket[];
     event: Event;
     eventRef: string;
-    attendees: Attendee[];
+    customer: ICustomer;
     id: string;
 
     constructor(order: IOrder) {
         this.tickets = order.tickets;
         this.event = order.event;
         this.eventRef = order.eventRef;
-        this.attendees = order.attendees.map(x => new Attendee(x));
+        this.customer = order.customer;
         this.id = order.id;
     }
 
     get total(): number {
-        return this.tickets.reduce((acc, cur) => acc + cur.quantity * cur.ticket.price, 0);
+        return this.tickets.reduce((acc, cur) => acc + cur.quantity * Number(cur.ticket?.price), 0);
     }
 
-    addAttendee() {
-        this.attendees.push({ firstName: '', lastName: '', photoUrl: '' });
-    }
+    // addAttendee() {
+    //     this.attendees.push({ firstName: '', lastName: '', photoUrl: '' });
+    // }
 
-    removeAttendee(index: number) {
-        this.attendees = this.attendees.slice(index, 1);
-    }
+    // removeAttendee(index: number) {
+    //     this.attendees = this.attendees.slice(index, 1);
+    // }
 }
 
 

@@ -1,0 +1,40 @@
+<mat-toolbar>Datos personales</mat-toolbar>
+
+<div *ngIf="loaded">
+    <div *ngIf="collectAttendeInfo">
+        <div *ngFor="let ticket of order.tickets" fxLayout="column" fxLayoutAlign="start stretch">
+            <div *ngFor="let attendee of ticket.attendees" class="attendee-form">
+                <app-ticket-form [attendee]="attendee" [name]="ticket.ticket?.name || ''"></app-ticket-form>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="form" *ngIf="!collectAttendeInfo">
+        <div fxLayout="column">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="firstName" placeholder="Ingresa tu nombre completo">
+                <mat-error>Ingresa tu nombre completo</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Apellidos</mat-label>
+                <input matInput formControlName="lastName" placeholder="Ingresa tus apellidos">
+                <mat-error>Ingresa tus apellidos</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput formControlName="email" email placeholder="Ingresa tu correo electrónico">
+                <mat-error *ngIf="form.get('email')?.hasError('required')">Ingresa tu correo electrónico</mat-error>
+                <mat-error *ngIf="form.get('email')?.hasError('email')">Ingresa un correo electrónico válido</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="column">
+            <mat-checkbox formControlName="privacy" color="primary">He leído y estoy de acuerdo con los <a
+                    href="">términos y condiciones</a> y <a href="">aviso de privacidad</a></mat-checkbox>
+            
+            <button mat-raised-button color="primary" [disabled]="form.invalid">Pagar {{ order.total | currency }}</button>
+        </div>
+    </form>
+</div>

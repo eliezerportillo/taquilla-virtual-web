@@ -1,6 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IAttendee, OrderItem } from 'src/app/models/models';
-
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-ticket-image-picker',
   templateUrl: './ticket-image-picker.component.html',

@@ -33,20 +33,26 @@ export interface Event extends IAggregateRoot {
 }
 
 export interface IOrder extends IAggregateRoot {
-    tickets: OrderItem[]
+    tickets: IOrderTicket[]
+    customer: ICustomer;
     event: Event;
     eventRef: string;
-    attendees: IAttendee[]
 }
 
 export interface IAttendee extends Person {
+    photoFile?: string | ArrayBuffer | null;
     photoUrl: string;
 }
 
-export interface OrderItem {
+export interface ICustomer extends Person {
+    email: string;
+}
+
+export interface IOrderTicket {
     quantity: number;
+    attendees: IAttendee[]
     ticketRef: string;
-    ticket: Ticket;
+    ticket?: Ticket;
 }
 
 interface PromoCode {

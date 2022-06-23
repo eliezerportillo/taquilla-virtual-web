@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PaymentComponent } from './payment/payment.component';
+
 import { TicketPickerComponent } from './ticket-picker/ticket-picker.component';
 import { HomeComponent } from './home.component';
+import { TicketsInfoComponent } from './tickets-info/tickets-info.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -10,6 +12,7 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: 'select', component: TicketPickerComponent },
+      { path: 'info', component: TicketsInfoComponent },
       { path: 'payment', component: PaymentComponent }
     ]
   },
