@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -14,6 +15,11 @@ const routes: Routes = [
   {
     path: 'events',
     loadChildren: () => import('./events/events.module').then(m => m.EventsModule)
+  },
+  {
+    path: 'oops',
+    pathMatch: 'full',
+    component: ErrorPageComponent
   }
 ];
 

@@ -1,18 +1,4 @@
 import { NgModule } from '@angular/core';
-
-
-import { CartRoutingModule as TicketsRoutingModule } from './tickets-routing.module';
-
-import { TicketPickerComponent } from './ticket-picker/ticket-picker.component';
-import { WidgetModule } from '../widget/widget.module';
-import { HomeComponent } from './home.component';
-import { TicketImagePickerComponent } from './ticket-image-picker/ticket-image-picker.component';
-import { PaymentComponent } from './payment/payment.component';
-
-import { EndSessionDialogComponent } from './end-session-dialog/end-session-dialog.component';
-import { TicketFormComponent } from './ticket-form/ticket-form.component';
-import { TicketsInfoComponent } from './tickets-info/tickets-info.component';
-
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,16 +11,34 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 
 
+import { TicketsRoutingModule } from './tickets-routing.module';
+
+import { TicketPickerComponent } from './ticket-picker/ticket-picker.component';
+import { WidgetModule } from '../widget/widget.module';
+import { HomeComponent } from './home.component';
+import { TicketImagePickerComponent } from './ticket-image-picker/ticket-image-picker.component';
+
+import { EndSessionDialogComponent } from './end-session-dialog/end-session-dialog.component';
+import { TicketFormComponent } from './ticket-form/ticket-form.component';
+import { TicketsInfoComponent } from './tickets-info/tickets-info.component';
+import { TicketPaymentComponent } from './ticket-payment/ticket-payment.component';
+import { PaypalButtonComponent } from './payment-buttons/paypal-button/paypal-button.component';
+import { TicketPrintComponent } from './ticket-print/ticket-print.component';
+
+
+
 
 @NgModule({
   declarations: [
     HomeComponent,
     TicketPickerComponent,
     TicketImagePickerComponent,
-    PaymentComponent,
     EndSessionDialogComponent,
     TicketFormComponent,
-    TicketsInfoComponent
+    TicketsInfoComponent,
+    TicketPaymentComponent,
+    PaypalButtonComponent,
+    TicketPrintComponent
   ],
   entryComponents: [
     EndSessionDialogComponent

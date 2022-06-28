@@ -37,6 +37,7 @@ export interface IOrder extends IAggregateRoot {
     customer: ICustomer;
     event: Event;
     eventRef: string;
+    orderResponse?: any;
 }
 
 export interface IAttendee extends Person {

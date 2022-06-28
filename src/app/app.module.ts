@@ -11,12 +11,14 @@ import { HomeComponent } from './home/home.component';
 import { LocaleService } from './core/locale.service';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,

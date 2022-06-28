@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { TicketPickerComponent } from './ticket-picker/ticket-picker.component';
 import { HomeComponent } from './home.component';
 import { TicketsInfoComponent } from './tickets-info/tickets-info.component';
-import { PaymentComponent } from './payment/payment.component';
+import { TicketPaymentComponent } from './ticket-payment/ticket-payment.component';
+import { TicketPrintComponent } from './ticket-print/ticket-print.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
     children: [
       { path: 'select', component: TicketPickerComponent },
       { path: 'info', component: TicketsInfoComponent },
-      { path: 'payment', component: PaymentComponent }
+      { path: 'payment', component: TicketPaymentComponent },
+      { path: 'ticketprint', component: TicketPrintComponent }
     ]
   },
   // { path: ':eventId', component: TicketPickerComponent },
@@ -23,4 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CartRoutingModule { }
+export class TicketsRoutingModule { }

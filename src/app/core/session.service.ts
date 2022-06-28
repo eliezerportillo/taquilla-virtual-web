@@ -28,9 +28,8 @@ export class SessionService {
     return sessionStorage.getItem('order') ? true : false;
   }
 
-  startSession(order: IOrder) {
+  setSession(order: IOrder) {
     sessionStorage.setItem('order', JSON.stringify(order));
-    // this.reset();
   }
 
   removeSession() {

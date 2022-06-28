@@ -16,6 +16,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginRoutingModule } from './login-routing.module';
 import { environment } from 'src/environments/environment';
 import { SigninComponent } from './signin/signin.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { SigninComponent } from './signin/signin.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
     MatFormFieldModule,
     MatToolbarModule,
     FlexLayoutModule,    

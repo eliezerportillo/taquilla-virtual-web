@@ -116,7 +116,7 @@ export class TicketPickerComponent implements OnInit {
   }
 
   goNext() {
-    this.sessionService.startSession(this.order);
+    this.sessionService.setSession(this.order);
     this.router.navigateByUrl(`/events/${this.event.id}/tickets/info`);
   }
 

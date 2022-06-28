@@ -7,7 +7,14 @@
     padding: 0 16px;
 }
 
-
 form {
     padding: 0 16px;
+}
+
+:host::ng-deep.mat-checkbox-layout {
+    white-space: normal !important;
+}
+
+:host::ng-deep.mat-checkbox-inner-container {
+    margin-top: 4px;
 }

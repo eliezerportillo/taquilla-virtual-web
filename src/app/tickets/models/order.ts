@@ -7,6 +7,7 @@ export class Order implements IOrder {
     eventRef: string;
     customer: ICustomer;
     id: string;
+    orderResponse?: any;
 
     constructor(order: IOrder) {
         this.tickets = order.tickets;

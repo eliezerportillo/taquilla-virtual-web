@@ -12,6 +12,11 @@ export const environment = {
     authDomain: 'taquilla-virtual.firebaseapp.com',
     messagingSenderId: '440288510222',
   },
+  paypal: {
+    "client-id":  'ATa2JPL6e0-kyXSenpkzuYFHSnabCnaA0uWo2sXiU8LWMuGuFRDe68nE9JPmzFAEOFEIfcPE737u6bTE',
+    currency: "MXN",
+    locale: 'es_MX'
+  },
   production: false
 };
 

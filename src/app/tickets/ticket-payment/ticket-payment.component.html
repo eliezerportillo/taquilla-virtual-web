@@ -1,0 +1,7 @@
+<mat-toolbar>Métodos de pago</mat-toolbar>
+
+<div class="payment-medthods" fxLayout="column" fxLayoutAlign="start stretch">
+
+    <app-paypal-button [paymentAmount]="order.total" (onSuccess)="onSuccess($event)" (onError)="onError($event)">
+    </app-paypal-button>
+</div>

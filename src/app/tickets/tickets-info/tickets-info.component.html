@@ -34,7 +34,7 @@
             <mat-checkbox formControlName="privacy" color="primary">He leído y estoy de acuerdo con los <a
                     href="">términos y condiciones</a> y <a href="">aviso de privacidad</a></mat-checkbox>
             
-            <button mat-raised-button color="primary" [disabled]="form.invalid">Pagar {{ order.total | currency }}</button>
+            <a mat-raised-button color="primary" [disabled]="form.invalid" (click)="goNext()">Pagar {{ order.total | currency }}</a>
         </div>
     </form>
 </div>
