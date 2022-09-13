@@ -14,8 +14,7 @@ const routes: Routes = [
     children: [
       { path: 'select', component: TicketPickerComponent },
       { path: 'info', component: TicketsInfoComponent },
-      { path: 'payment', component: TicketPaymentComponent },
-      { path: 'ticketprint', component: TicketPrintComponent }
+      { path: 'payment', component: TicketPaymentComponent }      
     ]
   },
   // { path: ':eventId', component: TicketPickerComponent },

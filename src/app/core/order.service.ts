@@ -1,21 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { SessionService } from 'src/app/core/session.service';
-import { IOrder, Event, DiscountType, EventCategory, EventType, LimitType, IOrderTicket, TicketChannelOption, TicketDeliveryMethod, TicketType, TicketVisibility, Ticket } from 'src/app/models/models';
+import { Injectable } from '@angular/core';
+import { DiscountType, EventCategory, EventType, IOrder, LimitType, TicketChannelOption, TicketDeliveryMethod, TicketType, TicketVisibility } from '../models/models';
 
-import { Order, } from '../models/order';
-
-@Component({
-  selector: 'app-ticket-picker',
-  templateUrl: './ticket-picker.component.html',
-  styleUrls: ['./ticket-picker.component.scss']
+@Injectable({
+  providedIn: 'root'
 })
-export class TicketPickerComponent implements OnInit {
+export class OrderService {
 
-  order: Order;
-  event: Event;
-  constructor(private router: Router, private sessionService: SessionService) {
-    this.event = {
+  constructor() { }
+
+  get(id: string): IOrder {
+    const event = {
       id: '1',
       address: 'Fray T de motolini 696, Guadalajara',
       date: new Date(),
@@ -71,63 +65,23 @@ export class TicketPickerComponent implements OnInit {
     }
 
     const order: IOrder = {
-      event: this.event,
+      event: event,
       customer: {
         firstName: '',
         lastName: '',
         email: ''
       },
       eventRef: '',
-      id: '1',
-      tickets: this.event.tickets.map(x => {
+      id: id,
+      tickets: event.tickets.map(x => {
         return {
           ticket: x,
           ticketRef: '1',
           quantity: 0,
-          attendees: []
+           attendees: []
         }
       })
     }
-
-    this.order = new Order(order);
+    return order;
   }
-
-  get hasLimit(): boolean {
-    return this.event.ticketLimitPerOrder ? true : false;
-  }
-
-  reduce(ticket: IOrderTicket) {
-    ticket.quantity--;
-  }
-
-  increment(ticket: IOrderTicket) {
-    ticket.quantity++;
-  }
-
-  canAdd(): boolean {
-
-    const limit = Number(this.order.event.ticketLimitPerOrder);
-    if (limit > 0) {
-      const addedItems = this.order.tickets.map(x => x.quantity).reduce((acc, cur) => acc + cur, 0)
-      return addedItems < limit;
-    } else {
-      return true;
-    }
-  }
-
-  isFree(ticket?: Ticket): boolean {
-    return ticket != undefined && ticket.price <= 0;
-  }
-
-  goNext() {
-    this.sessionService.setSession(this.order);
-    this.router.navigateByUrl(`/events/${this.event.id}/tickets/info`);
-  }
-
-  ngOnInit(): void {
-    if (this.sessionService.hasSession()) {
-      this.order = new Order(this.sessionService.getSession());
-    }
-  }
-
 }

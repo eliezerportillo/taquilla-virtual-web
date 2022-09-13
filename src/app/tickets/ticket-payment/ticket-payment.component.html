@@ -2,6 +2,9 @@
 
 <div class="payment-medthods" fxLayout="column" fxLayoutAlign="start stretch">
 
-    <app-paypal-button [paymentAmount]="order.total" (onSuccess)="onSuccess($event)" (onError)="onError($event)">
-    </app-paypal-button>
+    <!-- <app-paypal-button [paymentAmount]="order.total" (onSuccess)="onSuccess($event)" (onError)="onError($event)">
+    </app-paypal-button> -->
+
+    <!-- <app-conekta-button></app-conekta-button> -->
+    <button mat-raised-button (click)="onSuccess(null)">Pagar</button>
 </div>

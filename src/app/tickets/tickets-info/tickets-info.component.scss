@@ -2,15 +2,18 @@
     padding: 0 16px;
 }
 
-.mat-card {
-    background-color: white;
-    padding: 0 16px;
-}
-
 form {
     padding: 0 16px;
 }
 
+mat-card {
+    background-color: white !important;
+}
+
+
+:host::ng-deep.mat-card-header-text {
+    margin: 0;
+}
 :host::ng-deep.mat-checkbox-layout {
     white-space: normal !important;
 }
@@ -18,3 +21,6 @@ form {
 :host::ng-deep.mat-checkbox-inner-container {
     margin-top: 4px;
 }
+
+
+

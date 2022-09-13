@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./events/events.module').then(m => m.EventsModule)
   },
   {
+    path: 'orders',
+    loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule)
+  },
+  {
     path: 'oops',
     pathMatch: 'full',
     component: ErrorPageComponent

@@ -1,40 +1,94 @@
-<mat-toolbar>Datos personales</mat-toolbar>
-
+<mat-toolbar>Información y pago</mat-toolbar>
 <div *ngIf="loaded">
-    <div *ngIf="collectAttendeInfo">
-        <div *ngFor="let ticket of order.tickets" fxLayout="column" fxLayoutAlign="start stretch">
-            <div *ngFor="let attendee of ticket.attendees" class="attendee-form">
-                <app-ticket-form [attendee]="attendee" [name]="ticket.ticket?.name || ''"></app-ticket-form>
-            </div>
+    <form [formGroup]="form" fxLayout="column" fxLayoutGap="32px">
+
+        <ng-container formGroupName="customer">
+
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Información de contacto</mat-card-title>
+                    <mat-card-subtitle>A través de este contacto te notificaremos cualquier cambio en los boletos o
+                        sobre el
+                        evento.
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div fxLayout="column">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="firstName" placeholder="Ingresa tu nombre completo">
+                            <mat-error>Se requiere el nombre</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Apellidos</mat-label>
+                            <input matInput formControlName="lastName" placeholder="Ingresa tus apellidos">
+                            <mat-error>Apellido es obligatorio</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Correo electrónico</mat-label>
+                            <input matInput formControlName="email" email placeholder="Ingresa tu correo electrónico">
+                            <mat-error *ngIf="form.get('customer')?.get('email')?.hasError('required')">Correo
+                                electrónico es obligatorio
+                            </mat-error>
+                            <mat-error *ngIf="form.get('customer')?.get('email')?.hasError('email')">Ingresa un correo
+                                electrónico válido
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+
+            </mat-card>
+        </ng-container>
+
+        <div formArrayName="tickets" *ngIf="collectAttendeInfo" fxLayout="column" fxLayoutGap="8px">
+            <ng-container *ngFor="let ticket of tickets.controls; let i = index">
+
+                <mat-card [formGroupName]="i">
+                    <mat-card-header>
+                        <div mat-card-avatar>
+                            <mat-icon>local_activity</mat-icon>
+                        </div>
+                        <mat-card-title>Boleto {{ i + 1}} - {{ticket.value.ticketName}}</mat-card-title>
+
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div fxLayout="column" fxLayoutAlign="start stretch">
+
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nombre</mat-label>
+                                <input matInput name="name" formControlName="firstName">
+                                <mat-error>Se requiere el nombre</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Apellidos</mat-label>
+                                <input matInput name="lastName" formControlName="lastName">
+                                <mat-error>Apellido es obligatorio</mat-error>
+                            </mat-form-field>
+
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>
         </div>
-    </div>
 
-    <form [formGroup]="form" *ngIf="!collectAttendeInfo">
+
+
         <div fxLayout="column">
-            <mat-form-field appearance="outline">
-                <mat-label>Nombre</mat-label>
-                <input matInput formControlName="firstName" placeholder="Ingresa tu nombre completo">
-                <mat-error>Ingresa tu nombre completo</mat-error>
-            </mat-form-field>
+            <span>
+                Al conitnuar estás de acuerdo con los <a href="">términos y condiciones</a> y el <a href="">aviso de
+                    privacidad</a>.
+            </span>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Apellidos</mat-label>
-                <input matInput formControlName="lastName" placeholder="Ingresa tus apellidos">
-                <mat-error>Ingresa tus apellidos</mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-                <mat-label>Correo electrónico</mat-label>
-                <input matInput formControlName="email" email placeholder="Ingresa tu correo electrónico">
-                <mat-error *ngIf="form.get('email')?.hasError('required')">Ingresa tu correo electrónico</mat-error>
-                <mat-error *ngIf="form.get('email')?.hasError('email')">Ingresa un correo electrónico válido</mat-error>
-            </mat-form-field>
-        </div>
-        <div fxLayout="column">
-            <mat-checkbox formControlName="privacy" color="primary">He leído y estoy de acuerdo con los <a
-                    href="">términos y condiciones</a> y <a href="">aviso de privacidad</a></mat-checkbox>
-            
-            <a mat-raised-button color="primary" [disabled]="form.invalid" (click)="goNext()">Pagar {{ order.total | currency }}</a>
+            <a mat-raised-button color="primary" (click)="goNext()">Pagar {{ order.total |
+                currency }}</a>
         </div>
     </form>
+
+
+
+
 </div>

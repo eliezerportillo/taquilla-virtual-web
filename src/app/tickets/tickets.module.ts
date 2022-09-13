@@ -24,6 +24,7 @@ import { TicketsInfoComponent } from './tickets-info/tickets-info.component';
 import { TicketPaymentComponent } from './ticket-payment/ticket-payment.component';
 import { PaypalButtonComponent } from './payment-buttons/paypal-button/paypal-button.component';
 import { TicketPrintComponent } from './ticket-print/ticket-print.component';
+import { ConektaButtonComponent } from './payment-buttons/conekta-button/conekta-button.component';
 
 
 
@@ -38,7 +39,8 @@ import { TicketPrintComponent } from './ticket-print/ticket-print.component';
     TicketsInfoComponent,
     TicketPaymentComponent,
     PaypalButtonComponent,
-    TicketPrintComponent
+    TicketPrintComponent,
+    ConektaButtonComponent
   ],
   entryComponents: [
     EndSessionDialogComponent

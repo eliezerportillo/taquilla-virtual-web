@@ -25,7 +25,7 @@ export class TicketPaymentComponent implements OnInit {
     console.log(data);
     this.order.orderResponse = data;
     this.sessionService.setSession(this.order);
-    this.router.navigateByUrl(`/events/${this.order.event.id}/tickets/ticketprint`);
+    this.router.navigateByUrl(`/orders/1/print`);
   }
 
   public onError(data: any) {
